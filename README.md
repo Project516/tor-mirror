@@ -7,9 +7,10 @@ Automated GitHub mirror for the latest Tor Browser releases across all platforms
 - **Automatic Updates**: Fetches the latest Tor Browser releases daily at midnight UTC
 - **Single "latest" Release**: Always maintains one GitHub release tagged as "latest" that gets overwritten with each update
 - **Multi-Platform Support**: Mirrors releases for:
-  - Windows (x86_64 and i686)
-  - macOS (Intel and Apple Silicon)
+  - Windows (x86_64 and i686 portable)
+  - macOS (Universal - Intel and Apple Silicon)
   - Linux (x86_64 and i686)
+  - Android (aarch64, armv7, x86_64, x86)
 - **Static Download Page**: Simple HTML page for easy downloads at [https://project516.github.io/torproject-mirror/](https://project516.github.io/torproject-mirror/)
 
 ## Usage
