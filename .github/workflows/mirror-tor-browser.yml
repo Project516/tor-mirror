@@ -62,24 +62,25 @@ jobs:
           echo ""
           echo "Fetching Onion Browser (iOS) from OnionBrowser repository..."
           
-          # Install jq if not available
-          if ! command -v jq &> /dev/null; then
-            echo "Installing jq..."
-            sudo apt-get update -qq && sudo apt-get install -y -qq jq
-          fi
+          # Fetch the latest release info from OnionBrowser repository
+          ONION_BROWSER_API_RESPONSE=$(curl -fsSL "https://api.github.com/repos/OnionBrowser/OnionBrowser/releases/latest" 2>/dev/null)
           
-          ONION_BROWSER_URL=$(curl -sL "https://api.github.com/repos/OnionBrowser/OnionBrowser/releases/latest" | \
-            jq -r '.assets[] | select(.name == "OnionBrowser.ipa") | .browser_download_url')
-          
-          if [ -n "$ONION_BROWSER_URL" ] && [ "$ONION_BROWSER_URL" != "null" ]; then
-            echo "Found Onion Browser IPA: $ONION_BROWSER_URL"
-            if curl -fL "$ONION_BROWSER_URL" -o "downloads/OnionBrowser.ipa"; then
-              echo "✓ Downloaded OnionBrowser.ipa ($(du -h downloads/OnionBrowser.ipa | cut -f1))"
+          if [ $? -eq 0 ] && [ -n "$ONION_BROWSER_API_RESPONSE" ]; then
+            ONION_BROWSER_URL=$(echo "$ONION_BROWSER_API_RESPONSE" | \
+              jq -r '.assets[] | select(.name == "OnionBrowser.ipa") | .browser_download_url')
+            
+            if [ -n "$ONION_BROWSER_URL" ] && [ "$ONION_BROWSER_URL" != "null" ]; then
+              echo "Found Onion Browser IPA: $ONION_BROWSER_URL"
+              if curl -fL "$ONION_BROWSER_URL" -o "downloads/OnionBrowser.ipa"; then
+                echo "✓ Downloaded OnionBrowser.ipa ($(du -h downloads/OnionBrowser.ipa | cut -f1))"
+              else
+                echo "⚠ Failed to download OnionBrowser.ipa"
+              fi
             else
-              echo "⚠ Failed to download OnionBrowser.ipa"
+              echo "⚠ Could not find OnionBrowser.ipa in latest release"
             fi
           else
-            echo "⚠ Could not find OnionBrowser.ipa in latest release"
+            echo "⚠ Failed to fetch OnionBrowser release information from GitHub API"
           fi
           
           # Download each file if it exists
