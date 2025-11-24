@@ -63,11 +63,9 @@ jobs:
           echo "Fetching Onion Browser (iOS) from OnionBrowser repository..."
           
           # Fetch the latest release info from OnionBrowser repository
-          ONION_BROWSER_API_RESPONSE=$(curl -fsSL "https://api.github.com/repos/OnionBrowser/OnionBrowser/releases/latest" 2>/dev/null)
-          
-          if [ $? -eq 0 ] && [ -n "$ONION_BROWSER_API_RESPONSE" ]; then
+          if ONION_BROWSER_API_RESPONSE=$(curl -fsSL "https://api.github.com/repos/OnionBrowser/OnionBrowser/releases/latest" 2>/dev/null) && [ -n "$ONION_BROWSER_API_RESPONSE" ]; then
             ONION_BROWSER_URL=$(echo "$ONION_BROWSER_API_RESPONSE" | \
-              jq -r '.assets[] | select(.name == "OnionBrowser.ipa") | .browser_download_url')
+              jq -r '.assets[] | select(.name == "OnionBrowser.ipa") | .browser_download_url' 2>/dev/null || echo "")
             
             if [ -n "$ONION_BROWSER_URL" ] && [ "$ONION_BROWSER_URL" != "null" ]; then
               echo "Found Onion Browser IPA: $ONION_BROWSER_URL"
