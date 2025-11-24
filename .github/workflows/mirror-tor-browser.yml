@@ -64,6 +64,7 @@ jobs:
           
           # Fetch the latest release info from OnionBrowser repository
           if ONION_BROWSER_API_RESPONSE=$(curl -fsSL "https://api.github.com/repos/OnionBrowser/OnionBrowser/releases/latest" 2>/dev/null) && [ -n "$ONION_BROWSER_API_RESPONSE" ]; then
+            # Extract the IPA download URL using jq (returns empty string if not found)
             ONION_BROWSER_URL=$(echo "$ONION_BROWSER_API_RESPONSE" | \
               jq -r '.assets[] | select(.name == "OnionBrowser.ipa") | .browser_download_url' 2>/dev/null || echo "")
             
@@ -388,7 +389,7 @@ jobs:
                   <h2>iOS</h2>
                   <div class="download-section">
                       <a href="https://github.com/${REPO}/releases/download/latest/OnionBrowser.ipa" class="download-link">
-                          <span class="platform-icon">🍎</span> Onion Browser (iOS)
+                          <span class="platform-icon">📱</span> Onion Browser (iOS)
                       </a>
                   </div>
           EOF
