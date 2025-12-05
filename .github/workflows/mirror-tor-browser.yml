@@ -428,6 +428,9 @@ jobs:
           LINUX_X64_NIGHTLY_FILE=$(ls downloads/tor-browser-linux-x86_64-tbb-nightly.*.tar.xz 2>/dev/null | head -n1)
           [ -n "$LINUX_X64_NIGHTLY_FILE" ] && HAS_LINUX_X64_NIGHTLY=true && LINUX_X64_NIGHTLY_BASENAME=$(basename "$LINUX_X64_NIGHTLY_FILE")
           
+          LINUX_AARCH64_NIGHTLY_FILE=$(ls downloads/tor-browser-linux-aarch64-tbb-nightly.*.tar.xz 2>/dev/null | head -n1)
+          [ -n "$LINUX_AARCH64_NIGHTLY_FILE" ] && HAS_LINUX_AARCH64_NIGHTLY=true && LINUX_AARCH64_NIGHTLY_BASENAME=$(basename "$LINUX_AARCH64_NIGHTLY_FILE")
+          
           ANDROID_AARCH64_NIGHTLY_FILE=$(ls downloads/tor-browser-android-aarch64-tbb-nightly.*.apk 2>/dev/null | head -n1)
           [ -n "$ANDROID_AARCH64_NIGHTLY_FILE" ] && HAS_ANDROID_AARCH64_NIGHTLY=true && ANDROID_AARCH64_NIGHTLY_BASENAME=$(basename "$ANDROID_AARCH64_NIGHTLY_FILE")
           
@@ -440,21 +443,12 @@ jobs:
           ANDROID_X86_NIGHTLY_FILE=$(ls downloads/tor-browser-android-x86-tbb-nightly.*.apk 2>/dev/null | head -n1)
           [ -n "$ANDROID_X86_NIGHTLY_FILE" ] && HAS_ANDROID_X86_NIGHTLY=true && ANDROID_X86_NIGHTLY_BASENAME=$(basename "$ANDROID_X86_NIGHTLY_FILE")
           
-          # Check for aarch64 builds (both community and nightly)
+          # Check for aarch64 community build (stable release)
           HAS_LINUX_AARCH64_COMMUNITY=false
-          
-          # Check for community aarch64 build (stable release)
           LINUX_AARCH64_COMMUNITY_FILE=$(ls downloads/tor-browser-linux-aarch64-[0-9]*.tar.xz 2>/dev/null | grep -v "tbb-nightly" | head -n1)
           if [ -n "$LINUX_AARCH64_COMMUNITY_FILE" ]; then
             HAS_LINUX_AARCH64_COMMUNITY=true
             LINUX_AARCH64_COMMUNITY_BASENAME=$(basename "$LINUX_AARCH64_COMMUNITY_FILE")
-          fi
-          
-          # Check for nightly aarch64 build (already checked above)
-          LINUX_AARCH64_NIGHTLY_FILE=$(ls downloads/tor-browser-linux-aarch64-tbb-nightly.*.tar.xz 2>/dev/null | head -n1)
-          if [ -n "$LINUX_AARCH64_NIGHTLY_FILE" ]; then
-            HAS_LINUX_AARCH64_NIGHTLY=true
-            LINUX_AARCH64_NIGHTLY_BASENAME=$(basename "$LINUX_AARCH64_NIGHTLY_FILE")
           fi
           
           # Set overall flag if any aarch64 build exists
