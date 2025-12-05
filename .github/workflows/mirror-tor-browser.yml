@@ -99,7 +99,7 @@ jobs:
               echo "Attempting to download ${NIGHTLY_FILE}..."
               if curl -fL "${NIGHTLY_BASE_URL}/${NIGHTLY_FILE}" -o "downloads/${NIGHTLY_FILE}"; then
                 echo "✓ Downloaded ${NIGHTLY_FILE} ($(du -h downloads/${NIGHTLY_FILE} | cut -f1))"
-                ((DOWNLOADED_COUNT++))
+                DOWNLOADED_COUNT=$((DOWNLOADED_COUNT + 1))
               else
                 echo "⚠ ${platform} nightly build not available for ${NIGHTLY_DATE}"
               fi
