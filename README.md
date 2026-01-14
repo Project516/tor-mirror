@@ -4,7 +4,7 @@ Automated GitHub mirror for the latest Tor Browser releases across all platforms
 
 ## Features
 
-- **Automatic Updates**: Fetches the latest Tor Browser releases daily at midnight UTC
+- **Automatic Updates**: Fetches the latest Tor Browser releases
 - **Single "latest" Release**: Always maintains one GitHub release tagged as "latest" that gets overwritten with each update
 - **Multi-Platform Support**: Mirrors stable releases and nightly builds for:
   - Windows (x86_64 and i686 portable)
@@ -12,7 +12,7 @@ Automated GitHub mirror for the latest Tor Browser releases across all platforms
   - Linux (x86_64, i686, and aarch64)
   - Android (aarch64, armv7, x86_64, x86)
   - iOS (Onion Browser)
-- **Nightly Builds**: Includes latest nightly builds for all major platforms (excluding Mullvad browser)
+- **Nightly Builds**: Includes latest nightly builds for all major platforms
 - **Static Download Page**: Simple HTML page for easy downloads at [https://project516.github.io/tor-mirror/](https://project516.github.io/torproject-mirror/)
 
 ## Usage
@@ -21,14 +21,13 @@ Visit the [Releases](https://github.com/Project516/tor-mirror/releases/latest) p
 
 ## How It Works
 
-1. A GitHub Actions workflow runs daily at midnight UTC
+1. A GitHub Actions workflow runs
 2. It fetches the latest stable Tor Browser version from `https://dist.torproject.org/torbrowser/`
 3. Downloads all platform-specific stable installers
-4. Downloads the latest nightly builds for all platforms from `https://nightlies.tbb.torproject.org/nightly-builds/tor-browser-builds/` (date-based URL)
-5. Downloads Onion Browser for iOS from `https://github.com/OnionBrowser/OnionBrowser/releases/latest/`
-6. Deletes the existing "latest" release
-7. Creates a new "latest" release with all the downloaded files
-8. Updates the `index.html` page with version information
+4. Downloads Onion Browser for iOS from `https://github.com/OnionBrowser/OnionBrowser/releases/latest/`
+5. Deletes the existing "latest" release
+6. Creates a new "latest" release with all the downloaded files
+7. Updates the `index.html` page with version information
 
 ## Manual Trigger
 

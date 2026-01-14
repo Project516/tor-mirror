@@ -476,7 +476,7 @@ jobs:
                       <a href="https://www.torproject.org/download/" class="external">torproject.org</a>
                   </div>
                   <div class="footer">
-                      <p>Automated mirror updated daily | <a href="https://github.com/${REPO}" class="external">View on GitHub</a></p>
+                      <p>Automated mirror updated | <a href="https://github.com/${REPO}" class="external">View on GitHub</a></p>
                   </div>
               </div>
           </body>
