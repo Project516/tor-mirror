@@ -1,0 +1,20 @@
+# Downloaded release files (created by CI workflow)
+downloads/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Editor files
+*.swp
+*.swo
+*~
+.vscode/
+.idea/
+
+# Tor Browser installers (should never be committed to the repo)
+*.exe
+*.dmg
+*.tar.xz
+*.apk
+*.ipa
