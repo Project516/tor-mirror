@@ -12,7 +12,7 @@ Automated monthly GitHub mirror for the latest Tor Browser releases across all p
   - Linux (x86_64, i686, and aarch64)
   - Android (aarch64, armv7, x86_64, x86)
   - iOS (Onion Browser)
-- **Static Download Page**: Simple HTML page for easy downloads at [https://project516.dev/tor-mirror/](https://project516.dev/torproject-mirror/)
+- **Static Download Page**: Simple HTML page for easy downloads at [https://project516.dev/tor-mirror/](https://project516.dev/tor-mirror/)
 
 ## Usage
 
